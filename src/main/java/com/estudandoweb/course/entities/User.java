@@ -1,9 +1,12 @@
 package com.estudandoweb.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 @Entity
 @Table(name = "tb_user")//renomeand pq User é um nome específico q pd dar conflitos
@@ -20,7 +23,15 @@ public class User implements Serializable {
     private String email;
     private String fone;
     private String password;
+    private List<Order> orders = new ArrayList<>();//coleção
 
+
+    //para representar o lado 1-N colocar essa anotação passando o nome da dependencia da outra classe
+    @JsonIgnore //esse comando impede que vire uma associação de mão dupla e cai em um loop
+    @OneToMany(mappedBy = "client")
+    public List<Order> getOrders() {
+        return orders;
+    }
     //Usando framework é obrigatório declarar construtor vazio
 
     public User() {
