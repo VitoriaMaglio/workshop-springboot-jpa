@@ -23,7 +23,6 @@ public class User implements Serializable {
 
     //Usando framework é obrigatório declarar construtor vazio
 
-
     public User() {
     }
 
