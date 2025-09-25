@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 @Entity
 @Table(name = "tb_user")//renomeand pq User é um nome específico q pd dar conflitos
+//indica que essa classa vais er uma tabela no banco de dados
 public class User implements Serializable {
 
     private static final long serialVersionUID=1L;
