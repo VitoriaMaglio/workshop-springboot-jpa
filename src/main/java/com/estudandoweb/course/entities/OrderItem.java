@@ -70,6 +70,11 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+
+    public Double getSubTotal() {
+        return price * quantity;
+    }//método que devolve o subtotal do pedido, lembrar de colocar o get
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
