@@ -22,8 +22,18 @@ public class Product implements Serializable {
     //vai ser uma coleção sem repetição de categorias; só fazer getter
     //instanciar para começar vazia
     //Set é uma interface, não pode ser instanciada ent tem q usar o Hashset
-@Transient
-    private Set<Category> catgories = new HashSet<>();
+//transformar esse relação N-N entre produto e categorias em uma tabela associativa
+
+
+//associação bidirecional, uma classe te q ter JsonIgnore
+    @ManyToMany
+    @JoinTable( name = "tb_product_category" ,
+            joinColumns = @JoinColumn(name = "fk_producy_id"),
+                inverseJoinColumns = @JoinColumn(name = "fk_category_id"))
+
+
+
+    private Set<Category> categories = new HashSet<>();
 
     public Product() {
     }
@@ -76,8 +86,8 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public Set<Category> getCatgories() {
-        return catgories;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
     @Override
