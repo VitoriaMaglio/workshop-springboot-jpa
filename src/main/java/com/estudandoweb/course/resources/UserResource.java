@@ -46,4 +46,17 @@ public class UserResource {
         return ResponseEntity.created(uri).body(obj);
     }
     //quando vc vai inserir um obj tem que ser com requisição http POST
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+    //erro quando tenta apagar user com associações
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
+        obj = userService.update(id, obj);
+        return ResponseEntity.ok().body(obj);//atualizar recurso com requisição PUT
+    }
 }
