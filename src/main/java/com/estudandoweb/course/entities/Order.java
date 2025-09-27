@@ -1,5 +1,6 @@
 package com.estudandoweb.course.entities;
 
+import com.estudandoweb.course.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
@@ -18,6 +19,8 @@ public class Order implements Serializable{
     //formatar data
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
+    private Integer orderStatus; //aqui vc troca o nome da enum por um num inteiro para mostrar q no banco vc está gravando um num int
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
@@ -27,9 +30,10 @@ public class Order implements Serializable{
     public Order() {
     }
 
-    public Order(Long id, Instant moment, User client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
+        setOrderStatus(orderStatus);
         this.client = client;
     }
 
@@ -47,6 +51,15 @@ public class Order implements Serializable{
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);//converter o num inteiro para tipo enum OrderStatus -> valueOf
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {//aqui vc recebe um vlor tipo enum e tem que guardar um num int
+        if (orderStatus != null){
+        this.orderStatus = orderStatus.getCode();}
     }
 
     public User getClient() {
