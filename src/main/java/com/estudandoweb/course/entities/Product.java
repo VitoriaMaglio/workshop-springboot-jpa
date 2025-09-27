@@ -1,5 +1,6 @@
 package com.estudandoweb.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -26,14 +27,15 @@ public class Product implements Serializable {
 
 
 //associação bidirecional, uma classe te q ter JsonIgnore
+
+
     @ManyToMany
-    @JoinTable( name = "tb_product_category" ,
-            joinColumns = @JoinColumn(name = "fk_producy_id"),
-                inverseJoinColumns = @JoinColumn(name = "fk_category_id"))
-
-
-
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
 
     public Product() {
     }
@@ -89,6 +91,15 @@ public class Product implements Serializable {
     public Set<Category> getCategories() {
         return categories;
     }
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items) {
+            set.add(x.getOrder());//percorrer cleções items, para cada elemento vc adiciona o getOrder
+        }
+        return set;
+    }
+    //quando vc procurar por orders ai sim vai aparecer os items relacionados a esse order
 
     @Override
     public boolean equals(Object o) {
