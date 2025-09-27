@@ -2,6 +2,7 @@ package com.estudandoweb.course.services;
 
 import com.estudandoweb.course.entities.User;
 import com.estudandoweb.course.repositories.UserRepository;
+import com.estudandoweb.course.services.exceptions.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,9 +21,9 @@ public class UserServices  {
     public List<User> findAll(){
         return userRepository.findAll();
     }
-    public User findById(Long id){
-        Optional<User> obj = userRepository.findById(id);
-        return obj.get();
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj) {
