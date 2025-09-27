@@ -1,13 +1,9 @@
 package com.estudandoweb.course.entities;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
-
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity //declarar que é uma entidade de tabela
 @Table(name = "tb_category") //declarar o nome da tabela
@@ -19,6 +15,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
     //associação 1-N com produtos
+    @Transient
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
     }
@@ -43,6 +41,10 @@ public class Category implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 
     @Override
