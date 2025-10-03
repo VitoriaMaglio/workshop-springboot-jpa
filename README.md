@@ -4,34 +4,37 @@
 ---
 
 # Cenário
+Esse projeto representa o back-end de um sistema de pedidos (estilo loja virtual).
+Ele organiza usuários, produtos, categorias, pedidos, itens do pedido e pagamentos.
+
 
 O projeto é uma aplicação de e-commerce simplificado que gerencia:
 
-Usuários (clientes que realizam pedidos)
+-Usuários (clientes que realizam pedidos)
 
-Produtos (itens disponíveis para compra)
+-Produtos (itens disponíveis para compra)
 
-Categorias (classificação dos produtos)
+-Categorias (classificação dos produtos)
 
-Pedidos (Orders) feitos pelos usuários
+-Pedidos (Orders) feitos pelos usuários
 
-Itens de Pedido (OrderItem) que relacionam produtos com pedidos
+-Itens de Pedido (OrderItem) que relacionam produtos com pedidos
 
-Pagamentos (Payment) vinculados a um pedido
+-Pagamentos (Payment) vinculados a um pedido
 
-Exemplo de fluxo:
+-Exemplo de fluxo:
 
-Um usuário é cadastrado no sistema.
+-Um usuário é cadastrado no sistema.
 
-Ele realiza um pedido contendo um ou mais produtos.
+-Ele realiza um pedido contendo um ou mais produtos.
 
-Cada pedido pode ter um pagamento associado.
+-Cada pedido pode ter um pagamento associado.
 
-Os dados são persistidos no banco de dados relacional (MySQL).
+-Os dados são persistidos no banco de dados relacional (MySQL).
 
 ---
 
-#Arquitetura Utilizada
+# Arquitetura Utilizada
 
 O projeto segue a Arquitetura em Camadas (Layered Architecture):
 
@@ -100,3 +103,5 @@ Aprendizado prático de Spring Boot e arquitetura em camadas.
 Simulação de um sistema de pedidos inspirado em e-commerce.
 
 Organização modular e escalável para manutenção futura.
+
+Comentários no projeto contendo explicações sobre principais funcionalidades.
